@@ -1,4 +1,5 @@
 class Questions 
+  attr_reader :num1, :num2, :sum
   attr_writer :num1, :num2, :sum
 
   # randomize two numbers from 1-20 and sum 
@@ -8,10 +9,9 @@ class Questions
     @sum = @num1 + @num2
   end
 
-# Asking questions 
 def correct?()
-  answer = gets.chomp.to_i #get user input 
-  answer == self.sum  #add inputs 
+  answer = gets.chomp.to_i #get user input into integer 
+  answer == @sum  
 end
 
 end 
