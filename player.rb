@@ -1,20 +1,10 @@
 class Player
-  attr_reader :name
-  attr_writer :name
+  attr_reader :id #player1 or 2 
+  attr_accessor :lives, :turn
 
-  def initialize(name)
-    @name = name
+  def initialize(id, turn)
+    @id = id
+    @turn = turn
+    @lives = 3
   end
-
-  def score(score)
-    
-  end 
-  
-end 
-
-#  Score method get/set
-
-player1 = Player.new('Michelle')
-player2 = Player.new('Andy')
-
-# puts player1.name
+end
