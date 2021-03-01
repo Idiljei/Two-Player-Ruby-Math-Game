@@ -1,58 +1,52 @@
 class Game
-  attr_reader :p1, :p2
+  attr_reader :player1, :player2
 
   def initialize
-    @p1 = User.new(1, true)
-    @p2 = User.new(2, false)
+    @player1 = Player.new(1, true)
+    @player2 = Player.new(2, false)
   end
-  #if player1 turn -> call by id and ask question 
-    #check if the question is correct
-    #if correct add 1 to the score 
-    # if incorrect remove 1 from the score 
-    #  update game status before starting next round 
-    #set next turn "----- NEW TURN -----"
-    #repeat ^ steps until first person to 3"----- GAME OVER -----"
+
   def play
-    while (@p1.lives > 0 || @p2.lives > 0) do
+    while (@player1.lives > 0 || @player2.lives > 0) do
       question = Questions.new()
-      if @p1.turn
-        puts "Player #{@p1.id}: What does #{question.num1} plus #{question.num2} equal?"
+      if @player1.turn
+        p "Player #{@player1.id}: What does #{question.num1} plus #{question.num2} equal?"
         if question.correct?
-          puts "YES! You are correct."
+          p "YES! You are correct."
         else
-          puts "Seriously? No!"
-          @p1.lives -= 1
+          p "Seriously? No!"
+          @player1.lives -= 1
         end
 
-        @p1.turn = false
-        @p2.turn = true
+        @player1.turn = false
+        @player2.turn = true
 
-      elsif @p2.turn
-        puts "Player #{@p2.id}: What does #{question.num1} plus #{question.num2} equal?"
+      elsif @player2.turn
+        p "Player #{@player2.id}: What does #{question.num1} plus #{question.num2} equal?"
         if question.correct?
-          puts "YES! You are correct."
+          p "YES! You are correct."
         else
-          puts "Seriously? No!"
-          @p2.lives -= 1
+          p "Seriously? No!"
+          @player2.lives -= 1
         end
 
-        @p1.turn = true
-        @p2.turn = false
+        @player1.turn = true
+        @player2.turn = false
       end
 
-      if @p1.lives == 0
-        puts "Player #{@p2.id} wins with a score of #{@p2.lives}/3"
-        puts "----- GAME OVER -----"
-        puts "Good bye!"
+      if @player1.lives == 0
+        p "Player #{@player2.id} wins with a score of #{@player2.lives}/3"
+        p "----- GAME OVER -----"
+        p "Good bye!"
         exit
-      elsif @p2.lives == 0
-        puts "Player #{@p1.id} wins with a score of #{@p1.lives}/3"
-        puts "----- GAME OVER -----"
-        puts "Good bye!"
+      elsif @player2.lives == 0
+        p "Player #{@player1.id} wins with a score of #{@player2.lives}/3"
+        p "----- GAME OVER -----"
+        p "Good bye!"
         exit
       else
-        puts "P#{@p1.id}: #{@p1.lives}/3 vs P#{@p2.id}: #{@p2.lives}/3"
-        puts "----- NEW TURN -----"
+        p "P#{@player1.id}: #{@player1.lives}/3 vs P#{@player2.id}: #{@player2.lives}/3"
+        p "----- NEW TURN -----"
       end
     end
   end
