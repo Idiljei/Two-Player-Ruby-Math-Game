@@ -1,4 +1,3 @@
-# Methods to generate generate questions and see if it's correct
 class Questions 
   attr_writer :num1, :num2, :sum
 
@@ -9,21 +8,10 @@ class Questions
     @sum = @num1 + @num2
   end
 
-
-  def ask(question, answer)
-    print question
-      user_answer = gets.chomp.to_i
-        if user_answer == self.sum
-            puts "Correct!"
-            @score += 1
-        else
-            puts "Wrong! The answer was #{answer}"
-        end
-    end
-      
-    end 
-  
+# Asking questions 
+def correct?()
+  answer = gets.chomp.to_i #get user input 
+  answer == self.sum  #add inputs 
 end
 
-
-# score/questions/answers 
+end 
