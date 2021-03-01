@@ -14,4 +14,4 @@ def correct?()
   answer == @sum  
 end
 
-end 
+end
